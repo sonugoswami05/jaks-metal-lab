@@ -1,0 +1,832 @@
+@import "tailwindcss";
+
+/* ── Light Theme (default) ── */
+:root,
+[data-theme="light"] {
+  --bg-primary: #f8f9fc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #eef1f7;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5fb;
+  --text-primary: #1a2744;
+  --text-secondary: #4a5568;
+  --text-muted: #8896a6;
+  --accent: #1a2744;
+  --accent-light: #2c4470;
+  --accent-bright: #4a8fe7;
+  --accent-glow: rgba(74, 143, 231, 0.15);
+  --border: rgba(26, 39, 68, 0.1);
+  --border-accent: rgba(26, 39, 68, 0.25);
+  --gradient-accent: linear-gradient(135deg, #1a2744, #2c4470);
+  --gradient-accent-bright: linear-gradient(135deg, #4a8fe7, #1a2744);
+  --shadow-sm: 0 2px 8px rgba(26, 39, 68, 0.06);
+  --shadow-md: 0 8px 30px rgba(26, 39, 68, 0.08);
+  --shadow-lg: 0 20px 60px rgba(26, 39, 68, 0.1);
+  --shadow-glow: 0 0 30px rgba(74, 143, 231, 0.12);
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --particle-rgb: 26, 39, 68;
+  --scrollbar-track: #f0f0f5;
+  --scrollbar-thumb: #c0c8d4;
+}
+
+/* ── Dark Theme ── */
+[data-theme="dark"] {
+  --bg-primary: #12141c;
+  --bg-secondary: #181b25;
+  --bg-tertiary: #1e2230;
+  --bg-card: #1e2230;
+  --bg-card-hover: #252a3a;
+  --text-primary: #e8eaf0;
+  --text-secondary: #9ca3b4;
+  --text-muted: #5a6278;
+  --accent: #4a8fe7;
+  --accent-light: #6ba5f0;
+  --accent-bright: #4a8fe7;
+  --accent-glow: rgba(74, 143, 231, 0.2);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(74, 143, 231, 0.25);
+  --gradient-accent: linear-gradient(135deg, #4a8fe7, #2c4470);
+  --gradient-accent-bright: linear-gradient(135deg, #6ba5f0, #4a8fe7);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 30px rgba(74, 143, 231, 0.15);
+  --nav-bg: rgba(18, 20, 28, 0.88);
+  --particle-rgb: 74, 143, 231;
+  --scrollbar-track: #12141c;
+  --scrollbar-thumb: #2a2f40;
+}
+
+@theme inline {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-body: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--accent-bright);
+  color: #ffffff;
+}
+
+/* ── Container ── */
+.wrap {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ── Touch ── */
+button, a, [role="button"] {
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-bright);
+}
+
+/* ── Gradient text utility ── */
+.gradient-text {
+  background: var(--gradient-accent-bright);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section backgrounds ── */
+.section-alt {
+  background: var(--bg-secondary);
+}
+
+/* ── Card hover effect ── */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  border-color: var(--border-accent) !important;
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ── Service card top line ── */
+.service-card-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.service-card-line:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── Bottom accent line ── */
+.bottom-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+.bottom-line:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Process step hover ── */
+.process-icon-hover:hover {
+  background: var(--gradient-accent) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: var(--shadow-glow);
+  transform: scale(1.1);
+}
+
+/* ── Equipment card icon hover ── */
+.equip-card:hover .equip-icon {
+  background: var(--gradient-accent) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+}
+
+/* ── Service icon hover ── */
+.svc-card:hover .svc-icon {
+  background: var(--gradient-accent) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+}
+
+/* ── Why card icon hover ── */
+.why-card:hover .why-icon {
+  background: var(--gradient-accent) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+}
+
+/* ══════════════════════════════════════════
+   EXPLICIT SPACING & LAYOUT OVERRIDES
+   (Tailwind v4 utility fallbacks)
+   ══════════════════════════════════════════ */
+
+/* ── Section spacing ── */
+section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 1;
+}
+#hero {
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Hero fixes ── */
+#hero .wrap {
+  padding-top: 140px;
+  padding-bottom: 80px;
+}
+#hero h1 {
+  margin-bottom: 28px;
+}
+
+/* ── Section header spacing ── */
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 64px;
+}
+
+/* ── Grid gaps ── */
+.grid {
+  gap: 24px;
+}
+
+/* ── Card padding ── */
+.svc-card,
+.why-card {
+  padding: 44px 36px;
+}
+.equip-card {
+  padding: 32px;
+}
+.cert-card {
+  padding: 36px 24px;
+}
+
+/* ── Button spacing ── */
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+/* ── Stats bar ── */
+.hero-stats {
+  display: flex;
+  gap: 56px;
+  padding-top: 40px;
+  margin-top: 48px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+/* ── Primary button ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--gradient-accent);
+  box-shadow: var(--shadow-glow);
+  border: none;
+  transition: all 0.3s;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+}
+
+/* ── Secondary button ── */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border-accent);
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  background: var(--bg-card-hover);
+}
+
+/* ── About grid ── */
+#about .grid {
+  gap: 64px;
+  align-items: center;
+}
+#about .about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 28px 0 36px;
+}
+#about .about-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+#about p {
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+/* ── Service card inner spacing ── */
+.svc-card .svc-icon {
+  margin-bottom: 20px;
+}
+.svc-card h3 {
+  margin-bottom: 12px;
+}
+.svc-card p {
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+/* ── Equipment inner spacing ── */
+.equip-card h3 {
+  margin-bottom: 8px;
+}
+.equip-card p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* ── Certification card ── */
+.cert-card .cert-icon {
+  margin-bottom: 20px;
+}
+.cert-card h4 {
+  margin-bottom: 8px;
+}
+.cert-card p {
+  line-height: 1.6;
+}
+
+/* ── Why card inner ── */
+.why-card .why-icon {
+  margin-bottom: 20px;
+}
+.why-card h3 {
+  margin-bottom: 12px;
+}
+.why-card p {
+  line-height: 1.7;
+}
+
+/* ── Contact section ── */
+#contact .grid {
+  gap: 56px;
+}
+#contact .contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+#contact .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+#contact .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#contact input,
+#contact select,
+#contact textarea {
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+#contact textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ── CTA section ── */
+.cta-section {
+  padding: 80px 0;
+  text-align: center;
+}
+.cta-section h2 {
+  margin-bottom: 16px;
+}
+.cta-section p {
+  margin-bottom: 32px;
+}
+
+/* ── Footer spacing ── */
+footer .grid {
+  gap: 48px;
+}
+footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+footer h4 {
+  margin-bottom: 24px;
+}
+
+/* ── Marquee strip ── */
+.marquee-strip {
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+
+/* ── Process section ── */
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.process-step {
+  text-align: center;
+}
+.process-step h4 {
+  margin: 16px 0 8px;
+}
+.process-step p {
+  line-height: 1.6;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+/* ── Float card ── */
+.about-float {
+  position: absolute;
+  bottom: -24px;
+  right: 24px;
+  padding: 20px 28px;
+  border-radius: 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Contact details ── */
+.contact-detail {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.contact-detail h4 {
+  margin-bottom: 4px;
+}
+
+/* ── Social icons row ── */
+.social-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+/* ── Form wrapper ── */
+.form-wrapper {
+  padding: 40px;
+  border-radius: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
+/* ── Reveal animation classes ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.animate-in {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
+/* ══════════════════════════════════════════
+   MOBILE RESPONSIVE — !important overrides
+   inline styles for grid/layout
+   ══════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  section { padding: 72px 0 !important; }
+
+  /* All 2-col, 3-col, 4-col grids → 1 or 2 col */
+  #about > .wrap > div,
+  #contact > .wrap > div {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  #services > .wrap > div:last-child {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  #equipment > .wrap > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
+
+  #certifications > .wrap > div:last-child {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  footer > .wrap > div {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 40px !important;
+  }
+
+  /* Navbar hide desktop links */
+  nav ul { display: none !important; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  /* ── Drastically reduce section padding ── */
+  section { padding: 40px 0 !important; }
+  .cta-section { padding: 48px 0 !important; }
+
+  /* ── All grids → single column, tight gaps ── */
+  #services > .wrap > div:last-child,
+  #equipment > .wrap > div:last-child,
+  #certifications > .wrap > div:last-child,
+  #about > .wrap > div,
+  #contact > .wrap > div,
+  footer > .wrap > div {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  section:has(.why-card) > .wrap > div:last-child {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* ── Process → 2 col compact ── */
+  section:has(.process-icon-hover) > .wrap > div:last-child {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+  .process-icon-hover {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  /* ── Hero — compact ── */
+  #hero { min-height: auto !important; }
+  #hero .wrap { padding-top: 100px !important; padding-bottom: 32px !important; }
+  .hero-buttons { flex-direction: column !important; gap: 10px !important; }
+  .hero-buttons button { width: 100% !important; justify-content: center !important; padding: 14px 24px !important; }
+  .hero-stats { gap: 20px !important; margin-top: 28px !important; padding-top: 24px !important; }
+
+  /* ── Section headers — tighter ── */
+  div[style*="margin: 0 auto 64px"] {
+    margin-bottom: 28px !important;
+  }
+
+  /* ── About — hide the tall placeholder image on mobile ── */
+  #about > .wrap > div > div:first-child > div:first-child {
+    height: 200px !important;
+  }
+  #about > .wrap > div > div:first-child {
+    margin-bottom: 20px !important;
+  }
+  #about [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  #about [style*="grid-template-columns: 1fr 1fr"] > div {
+    padding: 10px 12px !important;
+  }
+
+  /* ── Cards — compact padding ── */
+  .svc-card, .why-card { padding: 24px 20px !important; }
+  .equip-card {
+    padding: 20px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+  .equip-card .equip-icon {
+    width: 56px !important;
+    min-width: 56px !important;
+    height: 56px !important;
+  }
+  .cert-card { padding: 24px 16px !important; }
+  .cert-card .cert-icon {
+    width: 48px !important;
+    height: 48px !important;
+    margin-bottom: 12px !important;
+  }
+  .why-card .why-icon {
+    width: 48px !important;
+    height: 48px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* ── Certifications → 2 col on mobile (they're small cards) ── */
+  #certifications > .wrap > div:last-child {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* ── Service card number — smaller ── */
+  .svc-card span[style*="position: absolute"] {
+    font-size: 2.5rem !important;
+  }
+  .svc-card .svc-icon {
+    width: 44px !important;
+    height: 44px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* ── Contact form ── */
+  #contact form > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  #contact .reveal[style*="padding: 40"],
+  #contact div[style*="padding: 40"] {
+    padding: 20px !important;
+  }
+
+  /* ── Footer — compact ── */
+  footer > .wrap { padding: 40px 20px !important; }
+  footer > .wrap:last-child {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 8px !important;
+    padding: 16px 20px !important;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary, .btn-secondary {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 24px !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* ── Typography — smaller ── */
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.5rem !important; }
+  p { font-size: 0.9rem !important; }
+
+  /* ── Decorative elements — tone down on mobile ── */
+  canvas { opacity: 0.2 !important; }
+  .hero-orb-1 { width: 250px !important; height: 250px !important; top: 5% !important; right: -15% !important; }
+  .hero-orb-2 { width: 120px !important; height: 120px !important; }
+  .hero-orb-3 { display: none !important; }
+  .hero-ring { display: none !important; }
+  .hero-ring-1, .hero-ring-2 { display: none !important; }
+
+  /* ── Marquee smaller ── */
+  .marquee-strip { padding: 12px 0 !important; }
+}
+
+/* ══════════════════════════════════════════
+   HERO ANIMATED BACKGROUND & ORBS
+   ══════════════════════════════════════════ */
+.hero-animated-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(74,143,231,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(26,39,68,0.06) 0%, transparent 60%);
+  animation: heroBgShift 12s ease-in-out infinite;
+}
+[data-theme="dark"] .hero-animated-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(74,143,231,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(74,143,231,0.06) 0%, transparent 60%);
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-orb-1 {
+  width: 400px; height: 400px;
+  top: 10%; right: -5%;
+  background: radial-gradient(circle at 30% 30%, var(--accent-glow), transparent 70%);
+  animation: orbFloat1 8s ease-in-out infinite;
+}
+.hero-orb-2 {
+  width: 200px; height: 200px;
+  bottom: 15%; left: 5%;
+  background: radial-gradient(circle, rgba(74,143,231,0.1), transparent 70%);
+  animation: orbFloat2 10s ease-in-out infinite;
+}
+.hero-orb-3 {
+  width: 120px; height: 120px;
+  top: 30%; right: 20%;
+  background: radial-gradient(circle, rgba(74,143,231,0.08), transparent 70%);
+  animation: orbFloat3 6s ease-in-out infinite;
+}
+
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  top: 50%; right: 15%;
+  transform: translate(50%, -50%);
+}
+.hero-ring-1 {
+  width: 300px; height: 300px;
+  border: 1px solid var(--border-accent);
+  animation: spin-slow 20s linear infinite;
+}
+.hero-ring-2 {
+  width: 420px; height: 420px;
+  border: 1px solid var(--border);
+  animation: spin-slow 30s linear infinite reverse;
+}
+
+@keyframes heroBgShift {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-20px, 30px) scale(1.05); }
+  66% { transform: translate(15px, -20px) scale(0.95); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -20px); }
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-15px, 25px); }
+}
+
+/* ══════════════════════════════════════════
+   NAVBAR RESPONSIVE
+   ══════════════════════════════════════════ */
+.desktop-nav { display: flex !important; }
+.hamburger-btn { display: none !important; }
+
+@media (max-width: 1024px) {
+  .desktop-nav { display: none !important; }
+  .hamburger-btn { display: flex !important; }
+}
+
+@media (max-width: 480px) {
+  /* Very small screens — hide Get Quote in nav, show only hamburger */
+  .nav-cta-btn { display: none !important; }
+}
+
+/* ── Animated keyframes ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
