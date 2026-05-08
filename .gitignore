@@ -6,3 +6,8 @@ node_modules/
 .DS_Store
 Thumbs.db
 fix-and-start.bat
+
+*.mp4
+*.jpeg
+!public/*
+index.html
