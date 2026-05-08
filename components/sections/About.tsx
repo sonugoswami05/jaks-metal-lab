@@ -45,22 +45,6 @@ export default function About() {
             >
               <LabAnimation />
             </div>
-            <div
-              className="about-badge"
-              style={{
-                position: "absolute",
-                bottom: -24,
-                right: 24,
-                padding: "20px 28px",
-                borderRadius: 16,
-                background: "var(--bg-primary)",
-                border: "1px solid var(--border)",
-                boxShadow: "var(--shadow-lg)",
-              }}
-            >
-              <h4 className="gradient-text" style={{ fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 800 }}>10+</h4>
-              <p style={{ fontSize: 10, letterSpacing: 1.5, textTransform: "uppercase", color: "var(--text-muted)" }}>Years of Expertise</p>
-            </div>
           </div>
 
           {/* Content */}
