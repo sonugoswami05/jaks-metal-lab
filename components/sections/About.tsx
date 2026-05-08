@@ -30,8 +30,9 @@ export default function About() {
       <div className="wrap">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
           {/* Image */}
-          <div className="reveal" style={{ position: "relative" }}>
+          <div className="reveal about-img-col" style={{ position: "relative" }}>
             <div
+              className="about-img-box"
               style={{
                 width: "100%",
                 height: 500,
@@ -51,6 +52,7 @@ export default function About() {
               </span>
             </div>
             <div
+              className="about-badge"
               style={{
                 position: "absolute",
                 bottom: -24,
@@ -125,6 +127,12 @@ export default function About() {
       <style jsx>{`
         @media (max-width: 1024px) {
           #about .wrap > div { grid-template-columns: 1fr !important; }
+          .about-img-col { margin-bottom: 48px; }
+        }
+        @media (max-width: 768px) {
+          .about-img-box { height: 280px !important; }
+          .about-badge { bottom: 16px !important; right: 16px !important; }
+          .about-img-col { margin-bottom: 0 !important; }
         }
       `}</style>
     </section>
