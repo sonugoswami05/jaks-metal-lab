@@ -611,12 +611,17 @@ footer h4 {
     margin-bottom: 28px !important;
   }
 
-  /* ── About — hide the tall placeholder image on mobile ── */
+  /* ── About — shrink animation box on mobile ── */
   #about > .wrap > div > div:first-child > div:first-child {
-    height: 200px !important;
+    height: 320px !important;
   }
   #about > .wrap > div > div:first-child {
     margin-bottom: 20px !important;
+  }
+  /* Keep badge inside the container on mobile */
+  .about-badge {
+    bottom: 16px !important;
+    right: 16px !important;
   }
   #about [style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr 1fr !important;

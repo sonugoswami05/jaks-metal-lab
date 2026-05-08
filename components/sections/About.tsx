@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { FlaskConical, CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
+import LabAnimation from "@/components/ui/LabAnimation";
 
 const features = [
   "NABL Accredited",
@@ -37,19 +38,12 @@ export default function About() {
                 width: "100%",
                 height: 500,
                 borderRadius: 20,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 16,
+                overflow: "hidden",
                 background: "var(--bg-secondary)",
                 border: "1px solid var(--border)",
               }}
             >
-              <FlaskConical size={64} style={{ color: "var(--accent)" }} strokeWidth={1.2} />
-              <span style={{ fontSize: 12, letterSpacing: 2.5, textTransform: "uppercase", fontWeight: 500, color: "var(--text-muted)" }}>
-                Laboratory Excellence
-              </span>
+              <LabAnimation />
             </div>
             <div
               className="about-badge"
@@ -124,17 +118,7 @@ export default function About() {
         </div>
       </div>
 
-      <style jsx>{`
-        @media (max-width: 1024px) {
-          #about .wrap > div { grid-template-columns: 1fr !important; }
-          .about-img-col { margin-bottom: 48px; }
-        }
-        @media (max-width: 768px) {
-          .about-img-box { height: 280px !important; }
-          .about-badge { bottom: 16px !important; right: 16px !important; }
-          .about-img-col { margin-bottom: 0 !important; }
-        }
-      `}</style>
+
     </section>
   );
 }
