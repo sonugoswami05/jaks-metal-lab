@@ -78,6 +78,10 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
 
+  verification: {
+    google: "9n4QgBVbnSALEBGadeRlKNoxVeMZXgd02CPGfJV657A",
+  },
+
   robots: {
     index: true,
     follow: true,
