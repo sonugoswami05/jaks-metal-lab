@@ -71,6 +71,12 @@ export const metadata: Metadata = {
     "incoming material inspection Gujarat",
   ],
 
+  icons: {
+    icon: [{ url: "/icon.jpg", type: "image/jpeg" }],
+    shortcut: "/icon.jpg",
+    apple: "/icon.jpg",
+  },
+
   authors: [{ name: "JAKS Metal Lab LLP", url: BASE_URL }],
   creator: "JAKS Metal Lab LLP",
   publisher: "JAKS Metal Lab LLP",
@@ -146,7 +152,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" data-theme="dark" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <head>
-        <link rel="icon" href="/logo.jpeg" type="image/jpeg" />
         <link rel="canonical" href={BASE_URL} />
         <meta name="theme-color" content="#1a2744" />
         <JsonLd />
