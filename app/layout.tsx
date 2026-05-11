@@ -144,7 +144,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="light" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" data-theme="dark" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <head>
         <link rel="icon" href="/logo.jpeg" type="image/jpeg" />
         <link rel="canonical" href={BASE_URL} />
