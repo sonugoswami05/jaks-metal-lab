@@ -8,6 +8,7 @@ import LoadingScreen from "@/components/ui/LoadingScreen";
 import FloatingContact from "@/components/ui/FloatingContact";
 import ParticleCanvas from "@/components/ui/ParticleCanvas";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import JsonLd from "@/components/ui/JsonLd";
 
 const spaceGrotesk = Space_Grotesk({
@@ -159,6 +160,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <FloatingContact />
           <SpeedInsights />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
